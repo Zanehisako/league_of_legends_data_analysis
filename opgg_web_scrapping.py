@@ -60,4 +60,12 @@ if __name__ == "__main__":
         future2 = executor.submit(getStatsAllRegionsRanks,regions[4:9],ranks)
         future3 = executor.submit(getStatsAllRegionsRanks,regions[9:13],ranks)
         future4 = executor.submit(getStatsAllRegionsRanks,regions[13:],ranks)
-        
+
+    #to merge the results into 1 final dataframe
+    df_stats_final = pd.DataFrame()
+    for region in regions:
+        for rank in ranks:
+            df_stat = pd.read_csv(f"champions_stat_{region}_{rank}.csv")
+            df_stats_final = pd.concat([df_stats_final,df_stat])
+    print(df_stats_final)
+    df_stats_final.to_csv("champions_stat_final.csv",index=False)
