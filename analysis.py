@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
+import seaborn as sns
 import pandas as pd
 
 global_stats_df = pd.read_csv("Champion_stats.csv")
-plt.bar(global_stats_df['Champion'],global_stats_df['Games Played'])
+sns.barplot(x=global_stats_df['Champion'],y=global_stats_df['Games Played'].astype(float))
 plt.show()
